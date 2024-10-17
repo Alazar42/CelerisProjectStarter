@@ -21,6 +21,7 @@ dependencies {
     // (in a separate module for demo project and in testMain).
     // With compose.desktop.common you will also lose @Preview functionality
     implementation(compose.desktop.currentOs)
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
 }
 
 compose.desktop {
@@ -28,9 +29,17 @@ compose.desktop {
         mainClass = "MainKt"
 
         nativeDistributions {
+            windows {
+                iconFile.set(project.file("celeris-logo-only.ico"))
+            }
+            linux {
+                iconFile.set(project.file("celeris-logo-only.jpg"))
+            }
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "CelerisProjectStarter"
             packageVersion = "1.0.0"
+            description = "Celeris Project Creator"
+            vendor = "Mickyas Tesfaye"
         }
     }
 }
